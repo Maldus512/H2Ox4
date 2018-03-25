@@ -10,6 +10,9 @@
         <itemPath>hardware/system.h</itemPath>
       </logicalFolder>
       <logicalFolder name="include" displayName="include" projectFiles="true">
+        <itemPath>include/timer.h</itemPath>
+        <itemPath>include/ciclo.h</itemPath>
+        <itemPath>include/digin.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -26,6 +29,9 @@
       <logicalFolder name="source" displayName="source" projectFiles="true">
         <itemPath>source/main.c</itemPath>
         <itemPath>source/traps.c</itemPath>
+        <itemPath>source/timer.c</itemPath>
+        <itemPath>source/ciclo.c</itemPath>
+        <itemPath>source/digin.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -35,9 +41,7 @@
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>source</Elem>
-    <Elem>hardware</Elem>
-    <Elem>include</Elem>
+    <Elem>.</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -105,7 +109,7 @@
         <property key="oXC16gcc-name-text-sec" value=""/>
         <property key="oXC16gcc-near-chars" value="false"/>
         <property key="oXC16gcc-no-isr-warn" value="false"/>
-        <property key="oXC16gcc-sfr-warn" value="false"/>
+        <property key="oXC16gcc-sfr-warn" value="true"/>
         <property key="oXC16gcc-smar-io-lvl" value="1"/>
         <property key="oXC16gcc-smart-io-fmt" value=""/>
         <property key="optimization-level" value="0"/>
@@ -115,6 +119,7 @@
         <property key="scalar-model" value="default"/>
         <property key="use-cci" value="false"/>
         <property key="use-iar" value="false"/>
+        <appendMe value="-Wall"/>
       </C30>
       <C30-AR>
         <property key="additional-options-chop-files" value="false"/>
@@ -237,6 +242,7 @@
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>
@@ -606,6 +612,8 @@
                   value=""/>
         <property key="warningmessagebreakoptions.warningmessages" value="holdstate"/>
       </Simulator>
+      <item path="source/digin.c" ex="true" overriding="false">
+      </item>
     </conf>
   </confs>
 </configurationDescriptor>

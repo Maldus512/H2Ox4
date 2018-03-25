@@ -82,12 +82,7 @@ void __attribute__((interrupt,no_auto_psv)) _AddressError(void)
 void __attribute__((interrupt,no_auto_psv)) _StackError(void)
 {
         INTCON1bits.STKERR = 0;         /* Clear the trap flag */
-        	//	errLoc = getErrLoc();	// get the error function
 
-
-        INTCON1bits.STKERR = 0; //Clear the trap flag
-
-	// it is preferred to return by RETFIE instruction	
         while (1);
 }
 

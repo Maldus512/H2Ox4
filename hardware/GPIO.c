@@ -23,5 +23,53 @@
 
 void Init_GPIO(void)
 {
+    LED1_TRIS = OUT;
+    LED2_TRIS = OUT;
+    LED3_TRIS = OUT;
+    LED4_TRIS = OUT;
+    LED5_TRIS = OUT;
     
+    LED1 = 0;
+    LED2 = 0;
+    LED3 = 0;
+    LED4 = 0;
+    LED5 = 0;
+
+    SONDA1_TRIS = IN;
+    SONDA2_TRIS = IN;
+    SONDA3_TRIS = IN;
+    SONDA4_TRIS = IN;
+
+    RELE1_TRIS = OUT;
+    RELE2_TRIS = OUT;
+    RELE3_TRIS = OUT;
+    RELE4_TRIS = OUT;
+
+    RELE1 = 0;
+    RELE2 = 0;
+    RELE3 = 0;
+    RELE4 = 0;
+    
+    
+    DIPSWITCH1_TRIS = IN;
+    DIPSWITCH2_TRIS = IN;
+    DIPSWITCH3_TRIS = IN;
+    DIPSWITCH4_TRIS = IN;
+    
+    PWM1_TRIS = OUT;
+    PWM2_TRIS = OUT;
+    PWM3_TRIS = OUT;
+    PWM4_TRIS = OUT;
+
+    PWM1 = 0;
+    PWM2 = 0;
+    PWM3 = 0;
+    PWM4 = 0;
+
+    
+    ANSBbits.ANSB1 = 0;
+    ANSBbits.ANSB14 = 0;
+    ANSCbits.ANSC3 = 0;
+    ANSBbits.ANSB9 = 0;
+
 }
