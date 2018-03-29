@@ -1,3 +1,62 @@
+/******************************************************************************/
+/*                                                                            */
+/*      H   H      SSSS     W   W                                             */
+/*      H   H     S         W   W                                             */
+/*      HHHHH      SSS      W   W                                             */
+/*      H   H         S     W W W                                             */
+/*      H   H  *  SSSS   *   W W   *  snc                                     */
+/*                                                                            */
+/*      *********************************                                     */
+/*                                                                            */
+/*  HSW snc - Casalecchio di Reno (BO) ITALY                                  */
+/*  ----------------------------------------                                  */
+/*                                                                            */
+/*  programma:  Centralina H2Ox4 controllo 4 livelli H2O                      */
+/*                                                                            */
+/*  cliente:    Union Spa - Sala Bolognese (BO) & HSW                         */
+/*                                                                            */
+/*  ver. 00:    25/03/2018  00.0 (base: H2Ox4 Renesas v.04.0 del 14/12/2017)  */
+/*                                                                            */
+/*  ver. att.:  29/03/2018  00.2                                              */
+/*                                                                            */
+/*  BY:         Maldus (Mattia MALDINI) & Massimo ZANNA                       */
+/*                                                                            */
+/*  NNB:        SENSO DEGLI INGRESSI: INVERTITO                               */
+/*                                                                            */
+/*----------------------------------------------------------------------------*/
+/*                                                                            */
+/*  micro:      MicroChip PIC PIC24FJ128GA704 - 4 MHz - 44 Pin ????????       */
+/*              128K Flash - 16 Ram                                           */
+/*              131.072 b ?  16.384 b ?                                       */
+/*                                                                            */
+/*============================================================================*/
+
+// STRINGA "VERSIONE PROGRAMMA"            012345678901234567890
+const unsigned char str_versione_prog[] = "[V:00.2 D:29/03/2018]\0"; // 21 CHR
+
+
+
+// <editor-fold defaultstate="collapsed" desc=" ####    REVISIONI    #### ">
+
+/*============================================================================*/
+/*                                                                            */
+/*  ver. 00.0: 25/03/2018 (base: H2Ox4 Renesas v.04.0 del 14/12/2018)         */
+/*                                                                            */
+/*----------------------------------------------------------------------------*/
+/*                                                                            */
+/*  ver. 00.1: 25/03/2018                                                     */
+/*                                                                            */
+/*      - VERSIONE CON HW SETTATO E FUNZIONANTE                               */
+/*      - PRIMA STESURA DI 2 MODALITA' DI FUNZIONAMENTO SU 3                  */
+/*                                                                            */
+/*----------------------------------------------------------------------------*/
+/*                                                                            */
+/*  ver. 00.2: 27/03/2018                                                     */
+/*                                                                            */
+/*      - COMPLETATA PROGRAMMAZIONE "LAVAGGIO" STEP/NOME/PREZZO/TIPO          */
+/*                                                                            */
+/******************************************************************************/
+
 #include "HardwareProfile.h"
 #include "system.h"
 #include "timer.h"
@@ -7,7 +66,13 @@
 
 
 
-int main(void) {
+
+
+// ========================================================================== //
+//  MAIN                                                                      //
+// ========================================================================== //
+int main(void)
+{
     MODE operatingMode;
     
     Configure_Oscillator();
@@ -17,7 +82,8 @@ int main(void) {
     
     operatingMode = readConfiguration();
 
-    while(1) {
+    while(1)
+    {
        gt_ciclo(operatingMode);
     }
     return 0;

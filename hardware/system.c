@@ -11,7 +11,7 @@
 /*                                                                            */
 /*  Data  : 04/10/2017      REV  : 00.0                                       */
 /*                                                                            */
-/*  U.mod.: 04/10/2017      REV  : 01.0                                       */
+/*  U.mod.: 29/03/2018      REV  : 01.0                                       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -71,9 +71,14 @@
 #pragma config ALTI2C1 = ALTI2CEN       /* Alternate I2C pin Location (SDA1 and SCL1 on RB9 and RB8) */
 
 
+
+
+
 void Configure_Oscillator()
 {
     OSCDIVbits.DIV = 1;
     CLKDIVbits.RCDIV = 0;
     OSCTUNbits.TUN = 0x019 /*0b011001*/;
+    
+    PMD3bits.CMPMD  = 1;        /* Alternate I2C pin Location (SDA1 and SCL1 on RB9 and RB8) */   
 }

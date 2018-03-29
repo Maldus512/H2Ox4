@@ -7,11 +7,11 @@
 /*                                                                            */
 /*      gestione INPUT                                                        */
 /*                                                                            */
-/*  Autore: Massimo ZANNA & Sabbiolino (Fabio BARALDI)                        */
+/*  Autore: Massimo ZANNA & Maldus (Mattia MALDINI)                           */
 /*                                                                            */
 /*  Data  : 22/07/2003      REV  : 00.0                                       */
 /*                                                                            */
-/*  U.mod.: 25/03/2017      REV  : 01.0                                       */
+/*  U.mod.: 25/03/2018      REV  : 00.1                                       */
 /*                                                                            */
 /******************************************************************************/
 
