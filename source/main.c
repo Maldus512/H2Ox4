@@ -82,6 +82,13 @@ int main(void)
     
     delay_ms(500);
     
+    /*
+     * Modalita' di funzionamento:
+     *  0000: Base - Base
+     *  0001: Trigger - Trigger
+     *  0010: Temporizzato - Temporizzato
+     *  0011: Trigger - Base
+     */
     operatingMode = readConfiguration();
 
     while(1)
