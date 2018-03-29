@@ -20,5 +20,9 @@
 
 void initTimer1 (void);
 
+extern unsigned int timer_sonde[4];
+extern unsigned long timer_inibizione_sonde[4];
+
+
 #endif
 

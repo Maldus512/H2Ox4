@@ -22,13 +22,24 @@ typedef enum
 {
             BASE = 0,
             TRIGGER,
+            TEMPORIZZATA,
+            TRIGGER_BASE,
+            UNDEFINED,
 } MODE;
 
 #define S_1_2       0
 #define S_3_4       1
 
 
+#define DELAY           1000
+#define DELAY_TRIGGER   2000
+#define DELAY_TEMPORIZZATA   5000
+#define DELAY_INIBIZIONE    60000UL
 
+extern uint8_t f_allarme_sonde;
+extern uint8_t f_allarme_configurazione;
+
+void gt_allarmi(MODE mode);
 void gt_ciclo(MODE mode);
 MODE readConfiguration();
 

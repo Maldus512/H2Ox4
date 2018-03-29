@@ -16,8 +16,13 @@
 /******************************************************************************/
 
 #include "HardwareProfile.h"
+#include "digin.h"
+#include "ciclo.h"
 
-unsigned long contasec = 0;
+
+
+unsigned int timer_sonde[4] = {0,0,0,0};
+unsigned long timer_inibizione_sonde[4] = {0,0,0,0};
 
 
 
@@ -47,9 +52,12 @@ void initTimer1 (void)
 /*----------------------------------------------------------------------------*/
 void __attribute__((interrupt, auto_psv)) _T1Interrupt (void)       
 {
+    int led_blink;
     static int pwm_counter = 0;
-    static int counter_500ms = 0;
+    static int counter_led = 0;
+    static int counter_1s = 0;
     static unsigned char  turno = 0;
+    int i;
     uint8_t P1_BUF;
     
     if (pwm_counter++ > 4)
@@ -71,35 +79,62 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt (void)
         }
     }
     
-    if (counter_500ms++ >= 500)
-    {
-        LED_RUN = ~LED_RUN;
-        counter_500ms = 0;
+    for (i = 0; i < 4; i++) {
+        if (timer_sonde[i] > 0) {
+            timer_sonde[i]--;
+        }
+        if (timer_inibizione_sonde[i] > 0) {
+            timer_inibizione_sonde[i]--;
+        }
     }
     
-     // GT ms ANTIRIMBALZO BIT DI INPUT ====================================== //
+    
+    if (f_allarme_configurazione) {
+        led_blink = 100;
+    }
+    else if (f_allarme_sonde) {
+        led_blink = 0;
+    }
+    else {
+        led_blink = 500;
+    }
+    
+    if (counter_led++ >= led_blink && led_blink != 0)
+    {
+        LED5 = ~LED5;
+        counter_led = 0;
+    }
+    else if (led_blink == 0) {
+        LED5 = 1;
+    }
+    
+    if (counter_1s++ >= 1000)
+    {
+        LED_RUN = ~LED_RUN;
+        counter_1s = 0;
+    }
+    
+     /* GT ms ANTIRIMBALZO BIT DI INPUT ====================================== */
     P1_BUF = 0;
-//    
-//    P1_BUF |= IN_08; // Leggo IN 08
-//    P1_BUF = P1_BUF << 1;
-//    P1_BUF |= IN_07; // Leggo IN 07
-//    P1_BUF = P1_BUF << 1;
-//    P1_BUF |= IN_06; // Leggo IN 06
-//    P1_BUF = P1_BUF << 1;
-//    P1_BUF |= IN_05; // Leggo IN 05
-//    P1_BUF = P1_BUF << 1;
-//    P1_BUF |= IN_04; // Leggo IN 04
-//    P1_BUF = P1_BUF << 1;
-//    P1_BUF |= IN_03; // Leggo IN 03
-//    P1_BUF = P1_BUF << 1;
-//    P1_BUF |= IN_02; // Leggo IN 02
-//    P1_BUF = P1_BUF << 1;
-//    P1_BUF |= IN_01; // Leggo IN 01
-//    
-//    Digin_filter ((DI_FILTER *) &DI_P1, P1_BUF);
     
+    P1_BUF |= IN_08; // Leggo IN 08
+    P1_BUF = P1_BUF << 1;
+    P1_BUF |= IN_07; // Leggo IN 07
+    P1_BUF = P1_BUF << 1;
+    P1_BUF |= IN_06; // Leggo IN 06
+    P1_BUF = P1_BUF << 1;
+    P1_BUF |= IN_05; // Leggo IN 05
+    P1_BUF = P1_BUF << 1;
+    P1_BUF |= IN_04; // Leggo IN 04
+    P1_BUF = P1_BUF << 1;
+    P1_BUF |= IN_03; // Leggo IN 03
+    P1_BUF = P1_BUF << 1;
+    P1_BUF |= IN_02; // Leggo IN 02
+    P1_BUF = P1_BUF << 1;
+    P1_BUF |= IN_01; // Leggo IN 01
     
-
+    Digin_filter ((DI_FILTER *) &DI_P1, P1_BUF);
+    
     IFS0bits.T1IF = 0;
 }
 

@@ -612,7 +612,7 @@
                   value=""/>
         <property key="warningmessagebreakoptions.warningmessages" value="holdstate"/>
       </Simulator>
-      <item path="source/digin.c" ex="true" overriding="false">
+      <item path="source/digin.c" ex="false" overriding="false">
         <C30>
         </C30>
         <C30-AR>

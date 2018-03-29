@@ -69,27 +69,24 @@ typedef struct tagDI_FILTER
 }DI_FILTER;
 
 // 
-// 
-// 
-// 
-// // def INPUT HW ------------------------------- //
-// #define INP_1       !_RC14
-// #define INP_2       !_RD7
-// #define INP_3       !_RF0
-// #define INP_4       !_RF1
-// #define INP_5       !_RG9
-// #define INP_6       !_RG6
-// #define INP_7       !_RG7
-// #define INP_8       !_RG8
-// 
+
+
+typedef enum {
+    SONDA1 = 0,
+            SONDA2,
+            SONDA3,
+            SONDA4,
+            DIPSWITCH1,
+            DIPSWITCH2,
+            DIPSWITCH3,
+            DIPSWITCH4,
+} input;
 
 
 extern DI_FILTER DI_P1;
 
-void Read_stato_in(void);
-
-void Init_Digin_Filter(DI_FILTER*, unsigned char, unsigned char);
-
+void Init_Digin_Filter(DI_FILTER*, unsigned char, unsigned char, unsigned char);
+uint8_t digitalRead(input i, DI_FILTER* di_filter);
 void Digin_filter(DI_FILTER * DI_Filter, unsigned char din);
 
 #endif	/* DIGIN_H */

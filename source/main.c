@@ -78,13 +78,16 @@ int main(void)
     Configure_Oscillator();
     Init_GPIO();
     initTimer1();
-//    Init_Digin_Filter(DI_P1);
+    Init_Digin_Filter(&DI_P1, 0, 0, DEBOUNCE);
+    
+    delay_ms(500);
     
     operatingMode = readConfiguration();
 
     while(1)
     {
        gt_ciclo(operatingMode);
+       gt_allarmi(operatingMode);
     }
     return 0;
 }

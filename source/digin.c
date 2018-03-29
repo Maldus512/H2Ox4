@@ -32,7 +32,6 @@ unsigned char P2_BUF;
 
 DI_FILTER DI_P1;
 
-unsigned char t_antirimbalzo_input = 4;
 unsigned char T_FILT;
 
 
@@ -42,10 +41,9 @@ unsigned char T_FILT;
 /*----------------------------------------------------------------------------*/
 /*  void init_Digin_filter(DI_FILTER *,unsigned char,unsigned char)           */
 /*----------------------------------------------------------------------------*/
-void Init_Digin_Filter (DI_FILTER *DI_Filter, unsigned char type, unsigned char level)
+void Init_Digin_Filter (DI_FILTER *DI_Filter, unsigned char type, unsigned char level, unsigned char antirimbalzo)
 {
-//  T_FILT = 4;     // valore di DEFAULT prima di caricare "t_antirimbalzo_input"
-    T_FILT = 20;    // valore di DEFAULT prima di caricare "t_antirimbalzo_input"
+    T_FILT = antirimbalzo;    // valore di DEFAULT prima di caricare "t_antirimbalzo_input"
     
     typedef union tagDI_INP
     {
@@ -129,7 +127,6 @@ void Digin_filter (DI_FILTER *DI_Filter, unsigned char din)
             unsigned char b5:1;
             unsigned char b6:1;
             unsigned char b7:1;
-            unsigned char b8:1;
         }inp;
     }DI_INP;
     
@@ -360,145 +357,78 @@ void Digin_filter (DI_FILTER *DI_Filter, unsigned char din)
             DI_Filter->flt7 = T_FILT;
         }
     }
-    /*------------------------------------------------------------------------*/
-    /* filtro sul bit 8                                                       */
-    /*------------------------------------------------------------------------*/
-    if (DI_Filter->I_8_old == di_in.inp.b8)
-    {
-        DI_Filter->flt8 = T_FILT;
+}
+
+
+/* Funzione: digitalRead
+ * Lettura di un pin digitale di input (8 in tutto).
+ * --------
+ *  i: 
+ */
+uint8_t digitalRead(input i, DI_FILTER *di_filter) {
+    switch (i) {
+        case SONDA1:
+            return di_filter->IN_0;
+            break;
+        case SONDA2:
+            return di_filter->IN_1;
+            break;
+        case SONDA3:
+            return di_filter->IN_2;
+            break;
+        case SONDA4:
+            return di_filter->IN_3;
+            break;
+        case DIPSWITCH1:
+            return di_filter->IN_4;
+            break;
+        case DIPSWITCH2:
+            return di_filter->IN_5;
+            break;
+        case DIPSWITCH3:
+            return di_filter->IN_6;
+            break;
+        case DIPSWITCH4:
+            return di_filter->IN_7;
+            break;
     }
-    else
-    {
-        if (--DI_Filter->flt8 == 0)
-        {
-            DI_Filter->I_8_old = di_in.inp.b8;
-            
-            if (!DI_Filter->type8)
-            {
-                if (DI_Filter->I_8_old)
-                    DI_Filter->IN_8 = TRUE;
-                else
-                    DI_Filter->IN_8 = FALSE;
-            }
-            else
-            {
-                if (!DI_Filter->I_8_old)
-                    DI_Filter->IN_8++;
-            }
-            DI_Filter->flt8 = T_FILT;
-        }
-    }
+    return 0;
 }
 
 
 
-void Read_stato_in(void)
-{
-    if (IN_01==0)
-    {
-        buf_stato_in_out[0] = '0';
+
+/* Funzione: digitalWrite
+ * Lettura di un pin digitale di output (8 in tutto).
+ * --------
+ *  i: 
+ */
+uint8_t digitalWrite(input i, DI_FILTER *di_filter) {
+    switch (i) {
+        case SONDA1:
+            return di_filter->IN_0;
+            break;
+        case SONDA2:
+            return di_filter->IN_1;
+            break;
+        case SONDA3:
+            return di_filter->IN_2;
+            break;
+        case SONDA4:
+            return di_filter->IN_3;
+            break;
+        case DIPSWITCH1:
+            return di_filter->IN_4;
+            break;
+        case DIPSWITCH2:
+            return di_filter->IN_5;
+            break;
+        case DIPSWITCH3:
+            return di_filter->IN_6;
+            break;
+        case DIPSWITCH4:
+            return di_filter->IN_7;
+            break;
     }
-    else
-    {
-        buf_stato_in_out[0] = '1';       
-    }
-    
-    if (IN_02==0)
-    {
-        buf_stato_in_out[1] = '0';
-    }
-    else
-    {
-        buf_stato_in_out[1] = '1';       
-    }
-    
-    if (IN_03==0)
-    {
-        buf_stato_in_out[2] = '0';
-    }
-    else
-    {
-        buf_stato_in_out[2] = '1';       
-    }
-    
-    if (IN_04==0)
-    {
-        buf_stato_in_out[3] = '0';
-    }
-    else
-    {
-        buf_stato_in_out[3] = '1';       
-    }
-    
-    if (IN_05==0)
-    {
-        buf_stato_in_out[4] = '0';
-    }
-    else
-    {
-        buf_stato_in_out[4] = '1';       
-    }
-    
-    if (IN_06==0)
-    {
-        buf_stato_in_out[5] = '0';
-    }
-    else
-    {
-        buf_stato_in_out[5] = '1';       
-    }
-    
-    if (IN_07==0)
-    {
-        buf_stato_in_out[6] = '0';
-    }
-    else
-    {
-        buf_stato_in_out[6] = '1';       
-    }
-    
-    if (IN_08==0)
-    {
-        buf_stato_in_out[7] = '0';
-    }
-    else
-    {
-        buf_stato_in_out[7] = '1';       
-    }
-    
-    if (IN_09==0)
-    {
-        buf_stato_in_out[8] = '0';
-    }
-    else
-    {
-        buf_stato_in_out[8] = '1';       
-    }
-    
-    if (IN_10==0)
-    {
-        buf_stato_in_out[9] = '0';
-    }
-    else
-    {
-        buf_stato_in_out[9] = '1';       
-    }
-    
-    if (IN_11==0)
-    {
-        buf_stato_in_out[10] = '0';
-    }
-    else
-    {
-        buf_stato_in_out[10] = '1';       
-    }
-    
-    if (IN_12==0)
-    {
-        buf_stato_in_out[11] = '0';
-    }
-    else
-    {
-        buf_stato_in_out[11] = '1';       
-    }
+    return 0;
 }
