@@ -13,6 +13,7 @@
         <itemPath>include/timer.h</itemPath>
         <itemPath>include/ciclo.h</itemPath>
         <itemPath>include/digin.h</itemPath>
+        <itemPath>include/wdt.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -32,6 +33,7 @@
         <itemPath>source/timer.c</itemPath>
         <itemPath>source/ciclo.c</itemPath>
         <itemPath>source/digin.c</itemPath>
+        <itemPath>source/wdt.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -228,7 +230,6 @@
         <property key="OUTPUT COMPARE 1" value="true"/>
         <property key="OUTPUT COMPARE 2" value="true"/>
         <property key="OUTPUT COMPARE 3" value="true"/>
-        <property key="PMP" value="true"/>
         <property key="REFO" value="true"/>
         <property key="RTCC" value="true"/>
         <property key="SPI 1" value="true"/>
@@ -242,7 +243,6 @@
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>

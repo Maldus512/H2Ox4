@@ -18,6 +18,7 @@
 #include "HardwareProfile.h"
 #include "digin.h"
 #include "ciclo.h"
+#include "wdt.h"
 
 
 
@@ -59,6 +60,8 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt (void)
     static unsigned char  turno = 0;
     int i;
     uint8_t P1_BUF;
+    
+    refresh_stamp_int(T1INT);
     
     if (pwm_counter++ > 4)
     {

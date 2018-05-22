@@ -63,7 +63,7 @@ const unsigned char str_versione_prog[] = "[V:00.2 D:29/03/2018]\0"; // 21 CHR
 #include "GPIO.h"
 #include "ciclo.h"
 #include "digin.h"
-
+#include "wdt.h"
 
 
 
@@ -73,14 +73,23 @@ const unsigned char str_versione_prog[] = "[V:00.2 D:29/03/2018]\0"; // 21 CHR
 // ========================================================================== //
 int main(void)
 {
+    int i;
     MODE operatingMode;
     
     Configure_Oscillator();
     Init_GPIO();
+    
+    LED_RUN = 1;
     initTimer1();
+    
     Init_Digin_Filter(&DI_P1, 0, 0, DEBOUNCE);
     
-    delay_ms(500);
+    /* Aspetta 500ms che si inizializzi il sistema, ma continuando a gestire il wdt*/
+    for (i = 0; i<25; i++) {
+        refresh_stamp_int(MAIN);
+        delay_ms(20);
+    }
+    
     
     /*
      * Modalita' di funzionamento:
@@ -93,8 +102,10 @@ int main(void)
 
     while(1)
     {
-       gt_ciclo(operatingMode);
-       gt_allarmi(operatingMode);
+        refresh_stamp_int(MAIN);
+        
+        gt_ciclo(operatingMode);
+        gt_allarmi(operatingMode);
     }
     return 0;
 }
