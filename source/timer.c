@@ -11,7 +11,7 @@
 /*                                                                            */
 /*  Data  : 25/03/2018      REV  : 00.0                                       */
 /*                                                                            */
-/*  U.mod.: 27/03/2018      REV  : 00.2                                       */
+/*  U.mod.: 03/04/2018      REV  : 01.0                                       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,18 +32,17 @@ void initTimer1 (void)
     T1CON           = 0x0000;   /* CONFIG TIMER 1mS */
     PR1             = 2000-1;   /* Load pediod register */
     TMR1            = 0x00;     /* clear counter */
-
+    
     T1CONbits.TON   = 1;        /* START TIMER 1 */
     T1CONbits.TCS   = 0;        /* get input from internal oscillator */
     
     T1CONbits.TCKPS = 00;       /* prescaler 1:1 */
     
-    
     IPC0bits.T1IP   = 0x06;     /* Setup Timer1 interrupt for 1 */
     IFS0bits.T1IF   = 0;        /* Clear the Timer1 interrupt status flag */
     IEC0bits.T1IE   = 1;        /* Enable Timer1 interrupts     */
-    
 }
+
 
 
 
@@ -82,23 +81,29 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt (void)
         }
     }
     
-    for (i = 0; i < 4; i++) {
-        if (timer_sonde[i] > 0) {
+    for (i = 0; i < 4; i++)
+    {
+        if (timer_sonde[i] > 0)
+        {
             timer_sonde[i]--;
         }
-        if (timer_inibizione_sonde[i] > 0) {
+        
+        if (timer_inibizione_sonde[i] > 0)
+        {
             timer_inibizione_sonde[i]--;
         }
     }
     
-    
-    if (f_allarme_configurazione) {
+    if (f_allarme_configurazione)
+    {
         led_blink = 100;
     }
-    else if (f_allarme_sonde) {
+    else if (f_allarme_sonde)
+    {
         led_blink = 0;
     }
-    else {
+    else
+    {
         led_blink = 500;
     }
     
@@ -107,7 +112,8 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt (void)
         LED5 = ~LED5;
         counter_led = 0;
     }
-    else if (led_blink == 0) {
+    else if (led_blink == 0)
+    {
         LED5 = 1;
     }
     
@@ -140,4 +146,3 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt (void)
     
     IFS0bits.T1IF = 0;
 }
-

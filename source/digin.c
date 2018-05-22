@@ -11,7 +11,7 @@
 /*                                                                            */
 /*  Data  : 22/07/2003      REV  : 00.0                                       */
 /*                                                                            */
-/*  U.mod.: 25/03/2018      REV  : 00.1                                       */
+/*  U.mod.: 03/04/2018      REV  : 01.0                                       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -360,13 +360,18 @@ void Digin_filter (DI_FILTER *DI_Filter, unsigned char din)
 }
 
 
+
+
+
 /* Funzione: digitalRead
  * Lettura di un pin digitale di input (8 in tutto).
  * --------
  *  i: 
  */
-uint8_t digitalRead(input i, DI_FILTER *di_filter) {
-    switch (i) {
+uint8_t digitalRead(input i, DI_FILTER *di_filter)
+{
+    switch (i)
+    {
         case SONDA1:
             return di_filter->IN_0;
             break;
@@ -398,13 +403,16 @@ uint8_t digitalRead(input i, DI_FILTER *di_filter) {
 
 
 
+
 /* Funzione: digitalWrite
  * Lettura di un pin digitale di output (8 in tutto).
  * --------
  *  i: 
  */
-uint8_t digitalWrite(input i, DI_FILTER *di_filter) {
-    switch (i) {
+uint8_t digitalWrite(input i, DI_FILTER *di_filter)
+{
+    switch (i)
+    {
         case SONDA1:
             return di_filter->IN_0;
             break;

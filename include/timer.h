@@ -11,7 +11,7 @@
 /*                                                                            */
 /*  Data  : 25/03/2018      REV  : 00.0                                       */
 /*                                                                            */
-/*  U.mod.: 27/03/2018      REV  : 00.2                                       */
+/*  U.mod.: 03/04/2018      REV  : 01.0                                       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -23,6 +23,4 @@ void initTimer1 (void);
 extern unsigned int timer_sonde[4];
 extern unsigned long timer_inibizione_sonde[4];
 
-
 #endif
-

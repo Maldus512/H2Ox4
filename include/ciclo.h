@@ -11,7 +11,7 @@
 /*                                                                            */
 /*  Data  : 25/03/2018      REV  : 00.0                                       */
 /*                                                                            */
-/*  U.mod.: 27/03/2018      REV  : 00.2                                       */
+/*  U.mod.: 03/04/2018      REV  : 01.0                                       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -38,6 +38,8 @@ typedef enum
 
 extern uint8_t f_allarme_sonde;
 extern uint8_t f_allarme_configurazione;
+
+
 
 void gt_allarmi(MODE mode);
 void gt_ciclo(MODE mode);

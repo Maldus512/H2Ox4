@@ -11,7 +11,7 @@
 /*                                                                            */
 /*  Data  : 01/05/2016      REV  : 00.0                                       */
 /*                                                                            */
-/*  U.mod.: 29/03/2018      REV  : 01.0                                       */
+/*  U.mod.: 03/04/2018      REV  : 01.0                                       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,7 +33,6 @@ void Init_GPIO(void)
     IN_02_TRIS = IN;
     IN_03_TRIS = IN;
     IN_04_TRIS = IN;
-    
     IN_05_TRIS = IN;
     IN_06_TRIS = IN;
     IN_07_TRIS = IN;
@@ -45,10 +44,13 @@ void Init_GPIO(void)
     RELE2_TRIS = OUT;
     RELE3_TRIS = OUT;
     RELE4_TRIS = OUT;
+    
     RELE1 = 0;
     RELE2 = 0;
     RELE3 = 0;
     RELE4 = 0;
+    
+    
     
     LED1_TRIS = OUT;
     LED2_TRIS = OUT;
@@ -56,21 +58,27 @@ void Init_GPIO(void)
     LED4_TRIS = OUT;
     LED5_TRIS = OUT; 
     LED_RUN_TRIS = OUT;
+    
     LED1 = 0;
     LED2 = 0;
     LED3 = 0;
     LED4 = 0;
     LED5 = 0;
     LED_RUN = 0;
-
+    
+    
+    
     PWM1_TRIS = OUT;
     PWM2_TRIS = OUT;
     PWM3_TRIS = OUT;
     PWM4_TRIS = OUT;
+    
     PWM1 = 0;
     PWM2 = 0;
     PWM3 = 0;
     PWM4 = 0;
+    
+    
     
     /* Tiro a massa tutti i pin del micro che non utilizziamo */
     UNUSED0_TRIS = OUT;
@@ -102,5 +110,4 @@ void Init_GPIO(void)
     UNUSED11 = 0;
     UNUSED12 = 0;
     UNUSED13 = 0;
-
 }

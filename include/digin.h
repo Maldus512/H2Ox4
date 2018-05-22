@@ -11,16 +11,17 @@
 /*                                                                            */
 /*  Data  : 22/07/2003      REV  : 00.0                                       */
 /*                                                                            */
-/*  U.mod.: 25/03/2018      REV  : 00.1                                       */
+/*  U.mod.: 03/04/2018      REV  : 01.0                                       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef DIGIN_H
 #define	DIGIN_H
 
-
 #define TRUE        1
 #define FALSE       0
+
+
 
 
 // #define T_FILT  4 //    20              /* 20 mS tempo filtro up/down */ mod 02/04/16
@@ -68,10 +69,12 @@ typedef struct tagDI_FILTER
     unsigned char flt8;
 }DI_FILTER;
 
-// 
 
 
-typedef enum {
+
+
+typedef enum
+{
     SONDA1 = 0,
             SONDA2,
             SONDA3,
@@ -81,7 +84,6 @@ typedef enum {
             DIPSWITCH3,
             DIPSWITCH4,
 } input;
-
 
 extern DI_FILTER DI_P1;
 
