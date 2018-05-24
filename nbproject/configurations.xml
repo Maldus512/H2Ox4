@@ -14,6 +14,7 @@
         <itemPath>include/ciclo.h</itemPath>
         <itemPath>include/digin.h</itemPath>
         <itemPath>include/wdt.h</itemPath>
+        <itemPath>include/variabili_parametri_sistema.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -34,6 +35,7 @@
         <itemPath>source/ciclo.c</itemPath>
         <itemPath>source/digin.c</itemPath>
         <itemPath>source/wdt.c</itemPath>
+        <itemPath>source/variabili_parametri_sistema.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"

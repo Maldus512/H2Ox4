@@ -3,47 +3,22 @@
 /*  HSW snc - Casalecchio di Reno (BO) ITALY                                  */
 /*  ----------------------------------------                                  */
 /*                                                                            */
-/*  modulo: ciclo.h                                                           */
+/*  modulo: variabili_parametri_sistema.c                                     */
 /*                                                                            */
-/*      gestione CICLO centralina                                             */
+/*      ciclo macchina                                                        */
 /*                                                                            */
-/*  Autore: Maldus (Mattia MALDINI) & Massimo ZANNA                           */
+/*  Autore: Massimo Zanna                                                     */
 /*                                                                            */
-/*  Data  : 25/03/2018      REV  : 00.0                                       */
+/*  Data  : 30/06/2016      REV  : 00.0                                       */
 /*                                                                            */
-/*  U.mod.: 03/04/2018      REV  : 01.0                                       */
+/*  U.mod.: 16/05/2018      REV  : 01.0                                       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef __CICLO_H__
-#define	__CICLO_H__
-
-typedef enum
-{
-    TEST = 0,
-    BASE,
-    TRIGGER,
-    TEMPORIZZATA,
-    TRIGGER_BASE,
-    UNDEFINED,
-} MODE;
-
-#define S_1_2       0
-#define S_3_4       1
-
-
-#define DELAY           1000
-#define DELAY_TRIGGER   2000
-#define DELAY_TEMPORIZZATA   5000
-#define DELAY_INIBIZIONE    60000UL
-
-extern uint8_t f_allarme_sonde;
-extern uint8_t f_allarme_configurazione;
+#include "HardwareProfile.h"
+#include "variabili_parametri_sistema.h"
 
 
 
-void gt_allarmi(MODE mode);
-void gt_ciclo(MODE mode);
-MODE readConfiguration();
-
-#endif
+unsigned char           f_in_test = 0;              // flag che segnala che sono nelle pagine di test
+unsigned char           f_undefined = 0;

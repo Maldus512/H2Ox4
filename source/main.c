@@ -64,6 +64,7 @@ const unsigned char str_versione_prog[] = "[V:01.0 D:03/04/2018]\0"; // 21 CHR
 #include "ciclo.h"
 #include "digin.h"
 #include "wdt.h"
+#include "variabili_parametri_sistema.h"
 
 
 
@@ -94,19 +95,28 @@ int main(void)
     /*
      * Modalita' di funzionamento: ============================================
      * 
-     *  0000: Base - Base
-     *  0001: Trigger - Trigger
-     *  0010: Temporizzato - Temporizzato
-     *  0011: Trigger - Base
+     *  0000: TEST
+     *  0001: Base - Base
+     *  0010: Trigger - Trigger
+     *  0011: Temporizzato - Temporizzato
+     *  0100: Trigger - Base
      * 
      */
     operatingMode = readConfiguration();
     
-    
+    if (operatingMode == TEST) {
+        f_in_test = 1;
+    }
+    else if (operatingMode == UNDEFINED) {
+        f_undefined = 1;
+    }
     
     while(1)
     {
+        /* Decommentare per fare resettare la macchina nella modalita' test*/
+        /*if (f_in_test == 0) {*/
         refresh_stamp_int(MAIN);
+
         
         gt_ciclo(operatingMode);
         gt_allarmi(operatingMode);

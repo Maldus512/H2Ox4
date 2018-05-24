@@ -444,17 +444,21 @@ MODE readConfiguration()
 
     if (d1 == 0 && d2 == 0 && d3 == 0 && d4 == 0)
     {
-        return BASE;
+        return TEST;
     }
     else if (d1 == 1 && d2 == 0 && d3 == 0 && d4 == 0)
     {
-        return TRIGGER;
+        return BASE;
     }
     else if (d1 == 0 && d2 == 1 && d3 == 0 && d4 == 0)
     {
-        return TEMPORIZZATA;
+        return TRIGGER;
     }
     else if (d1 == 1 && d2 == 1 && d3 == 0 && d4 == 0)
+    {
+        return TEMPORIZZATA;
+    }
+    else if (d1 == 0 && d2 == 0 && d3 == 1 && d4 == 0)
     {
         return TRIGGER_BASE;
     }
