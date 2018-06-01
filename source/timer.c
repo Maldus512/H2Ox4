@@ -18,7 +18,9 @@
 #include "HardwareProfile.h"
 #include "digin.h"
 #include "ciclo.h"
-
+#include "wdt.h"
+#include "variabili_parametri_sistema.h"
+#include "digout.h"
 
 
 unsigned int timer_sonde[4] = {0,0,0,0};
@@ -54,10 +56,12 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt (void)
     int led_blink;
     static int pwm_counter = 0;
     static int counter_led = 0;
-    static int counter_1s = 0;
+    static int counter_run = 0;
     static unsigned char  turno = 0;
     int i;
     uint8_t P1_BUF;
+    
+    refresh_stamp_int(T1INT);
     
     if (pwm_counter++ > 4)
     {
@@ -106,19 +110,45 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt (void)
     
     if (counter_led++ >= led_blink && led_blink != 0)
     {
-        LED5 = ~LED5;
+        update_digout(LED5, ~get_digout(LED5));
         counter_led = 0;
     }
     else if (led_blink == 0)
     {
-        LED5 = 1;
+        set_digout(LED5);
     }
     
-    if (counter_1s++ >= 1000)
-    {
-        LED_RUN = ~LED_RUN;
-        counter_1s = 0;
+    
+    counter_run++;
+    
+    if (f_in_test == 1) {
+        /* Nel caso in test blink con periodo 100ms*/
+        if(counter_run>100)
+        {
+            LED_RUN = ~LED_RUN;
+            counter_run = 0;
+        }
     }
+    else if (f_undefined == 1) {
+        /* Nel caso undefined fai un piccolo blink di 10 ms e stai spento per 490ms*/
+        if (counter_run <= 10) {
+            LED_RUN = 1;
+        }
+        else if (counter_run < 500) {
+            LED_RUN = 0;
+        }
+        else {
+            counter_run = 0;
+        }
+    }
+    else {
+        /* Nel caso normale blink con periodo 1s */
+        if(counter_run>1000)
+        {
+            LED_RUN = ~LED_RUN;
+            counter_run = 0;
+        }
+    }    
     
      /* GT ms ANTIRIMBALZO BIT DI INPUT ====================================== */
     P1_BUF = 0;

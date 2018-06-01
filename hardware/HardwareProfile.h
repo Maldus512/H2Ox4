@@ -27,18 +27,18 @@
 
 
 
-#define LED1_TRIS       TRISBbits.TRISB2
-#define LED2_TRIS       TRISBbits.TRISB3
-#define LED3_TRIS       TRISCbits.TRISC1
-#define LED4_TRIS       TRISAbits.TRISA8
-#define LED5_TRIS       TRISCbits.TRISC0
+#define OUT_01_TRIS       TRISBbits.TRISB2
+#define OUT_02_TRIS       TRISBbits.TRISB3
+#define OUT_03_TRIS       TRISCbits.TRISC1
+#define OUT_04_TRIS       TRISAbits.TRISA8
+#define OUT_05_TRIS       TRISCbits.TRISC0
 #define LED_RUN_TRIS    TRISAbits.TRISA4
 
-#define LED1            LATBbits.LATB2
-#define LED2            LATBbits.LATB3
-#define LED3            LATCbits.LATC1
-#define LED4            LATAbits.LATA8
-#define LED5            LATCbits.LATC0
+#define OUT_01            LATBbits.LATB2
+#define OUT_02            LATBbits.LATB3
+#define OUT_03            LATCbits.LATC1
+#define OUT_04            LATAbits.LATA8
+#define OUT_05            LATCbits.LATC0
 #define LED_RUN         LATAbits.LATA4
 
 
@@ -65,15 +65,15 @@
 
 
 
-#define RELE1_TRIS      TRISBbits.TRISB13
-#define RELE2_TRIS      TRISBbits.TRISB12
-#define RELE3_TRIS      TRISBbits.TRISB11
-#define RELE4_TRIS      TRISBbits.TRISB10
+#define OUT_06_TRIS      TRISBbits.TRISB13
+#define OUT_07_TRIS      TRISBbits.TRISB12
+#define OUT_08_TRIS      TRISBbits.TRISB11
+#define OUT_09_TRIS      TRISBbits.TRISB10
 
-#define RELE1           LATBbits.LATB13
-#define RELE2           LATBbits.LATB12
-#define RELE3           LATBbits.LATB11
-#define RELE4           LATBbits.LATB10
+#define OUT_06           LATBbits.LATB13
+#define OUT_07           LATBbits.LATB12
+#define OUT_08           LATBbits.LATB11
+#define OUT_09           LATBbits.LATB10
 
 
 

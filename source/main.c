@@ -17,7 +17,7 @@
 /*                                                                            */
 /*  ver. 00:    25/03/2018  00.0 (base: H2Ox4 Renesas v.04.0 del 14/12/2017)  */
 /*                                                                            */
-/*  ver. att.:  03/04/2018  01.0                                              */
+/*  ver. att.:  01/06/2018  02.0                                              */
 /*                                                                            */
 /*  BY:         Maldus (Mattia MALDINI) & Massimo ZANNA                       */
 /*                                                                            */
@@ -55,6 +55,12 @@ const unsigned char str_versione_prog[] = "[V:01.0 D:03/04/2018]\0"; // 21 CHR
 /*                                                                            */
 /*      - COMPLETATA PROGRAMMAZIONE "LAVAGGIO" STEP/NOME/PREZZO/TIPO          */
 /*                                                                            */
+/*----------------------------------------------------------------------------*/
+/*                                                                            */
+/*  ver. 02.0: 01/06/2018                                                     */
+/*                                                                            */
+/*      - WDT E MODALITA' TEST (dipswitch 0000)                               */
+/*                                                                            */
 /******************************************************************************/
 
 #include "HardwareProfile.h"
@@ -63,7 +69,8 @@ const unsigned char str_versione_prog[] = "[V:01.0 D:03/04/2018]\0"; // 21 CHR
 #include "GPIO.h"
 #include "ciclo.h"
 #include "digin.h"
-
+#include "wdt.h"
+#include "variabili_parametri_sistema.h"
 
 
 
@@ -73,32 +80,52 @@ const unsigned char str_versione_prog[] = "[V:01.0 D:03/04/2018]\0"; // 21 CHR
 // ========================================================================== //
 int main(void)
 {
+    int i;
     MODE operatingMode;
     
     Configure_Oscillator();
     Init_GPIO();
+    
+    LED_RUN = 1;
     initTimer1();
+    
     Init_Digin_Filter(&DI_P1, 0, 0, DEBOUNCE);
     
-    delay_ms(500);
+    /* Aspetta 500ms che si inizializzi il sistema, ma continuando a gestire il wdt*/
+    for (i = 0; i<25; i++) {
+        refresh_stamp_int(MAIN);
+        delay_ms(20);
+    }
+    
     
     /*
      * Modalita' di funzionamento: ============================================
      * 
-     *  0000: Base - Base
-     *  0001: Trigger - Trigger
-     *  0010: Temporizzato - Temporizzato
-     *  0011: Trigger - Base
+     *  0000: TEST
+     *  0001: Base - Base
+     *  0010: Trigger - Trigger
+     *  0011: Temporizzato - Temporizzato
+     *  0100: Trigger - Base
      * 
      */
     operatingMode = readConfiguration();
     
-    
+    if (operatingMode == TEST) {
+        f_in_test = 1;
+    }
+    else if (operatingMode == UNDEFINED) {
+        f_undefined = 1;
+    }
     
     while(1)
     {
-       gt_ciclo(operatingMode);
-       gt_allarmi(operatingMode);
+        /* Decommentare per fare resettare la macchina nella modalita' test*/
+        /*if (f_in_test == 0) */
+        refresh_stamp_int(MAIN);
+
+        
+        gt_ciclo(operatingMode);
+        gt_allarmi(operatingMode);
     }
     return 0;
 }

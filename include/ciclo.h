@@ -23,11 +23,12 @@
 
 typedef enum
 {
-            BASE = 0,
-            TRIGGER,
-            TEMPORIZZATA,
-            TRIGGER_BASE,
-            UNDEFINED,
+    TEST = 0,
+    BASE,
+    TRIGGER,
+    TEMPORIZZATA,
+    TRIGGER_BASE,
+    UNDEFINED,
 } MODE;
 
 #define S_1_2       0
