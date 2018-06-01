@@ -318,7 +318,7 @@ void gt_temporizzata(uint8_t sonde)
         else if (s == 1 && timer_sonde[SONDA3] == 0 && timer_inibizione_sonde[SONDA3] == 0)
         {
             set_digout(LED3);
-            clear_digout(RELE3);
+            set_digout(RELE3);
             sonde_on[SONDA3] = 1;
         }
         

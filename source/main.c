@@ -17,7 +17,7 @@
 /*                                                                            */
 /*  ver. 00:    25/03/2018  00.0 (base: H2Ox4 Renesas v.04.0 del 14/12/2017)  */
 /*                                                                            */
-/*  ver. att.:  03/04/2018  01.0                                              */
+/*  ver. att.:  01/06/2018  02.0                                              */
 /*                                                                            */
 /*  BY:         Maldus (Mattia MALDINI) & Massimo ZANNA                       */
 /*                                                                            */
@@ -54,6 +54,12 @@ const unsigned char str_versione_prog[] = "[V:01.0 D:03/04/2018]\0"; // 21 CHR
 /*  ver. 01.0: 03/04/2018                                                     */
 /*                                                                            */
 /*      - COMPLETATA PROGRAMMAZIONE "LAVAGGIO" STEP/NOME/PREZZO/TIPO          */
+/*                                                                            */
+/*----------------------------------------------------------------------------*/
+/*                                                                            */
+/*  ver. 02.0: 01/06/2018                                                     */
+/*                                                                            */
+/*      - WDT E MODALITA' TEST (dipswitch 0000)                               */
 /*                                                                            */
 /******************************************************************************/
 
