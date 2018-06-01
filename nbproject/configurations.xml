@@ -15,6 +15,7 @@
         <itemPath>include/digin.h</itemPath>
         <itemPath>include/wdt.h</itemPath>
         <itemPath>include/variabili_parametri_sistema.h</itemPath>
+        <itemPath>include/digout.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -36,6 +37,7 @@
         <itemPath>source/digin.c</itemPath>
         <itemPath>source/wdt.c</itemPath>
         <itemPath>source/variabili_parametri_sistema.c</itemPath>
+        <itemPath>source/digout.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -245,6 +247,7 @@
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>

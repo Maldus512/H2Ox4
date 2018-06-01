@@ -20,6 +20,7 @@
 #include "ciclo.h"
 #include "wdt.h"
 #include "variabili_parametri_sistema.h"
+#include "digout.h"
 
 
 unsigned int timer_sonde[4] = {0,0,0,0};
@@ -109,12 +110,12 @@ void __attribute__((interrupt, auto_psv)) _T1Interrupt (void)
     
     if (counter_led++ >= led_blink && led_blink != 0)
     {
-        LED5 = ~LED5;
+        update_digout(LED5, ~get_digout(LED5));
         counter_led = 0;
     }
     else if (led_blink == 0)
     {
-        LED5 = 1;
+        set_digout(LED5);
     }
     
     

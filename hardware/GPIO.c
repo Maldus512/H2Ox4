@@ -40,30 +40,30 @@ void Init_GPIO(void)
 
     
     
-    RELE1_TRIS = OUT;
-    RELE2_TRIS = OUT;
-    RELE3_TRIS = OUT;
-    RELE4_TRIS = OUT;
+    OUT_06_TRIS = OUT;
+    OUT_07_TRIS = OUT;
+    OUT_08_TRIS = OUT;
+    OUT_09_TRIS = OUT;
     
-    RELE1 = 0;
-    RELE2 = 0;
-    RELE3 = 0;
-    RELE4 = 0;
+    OUT_06 = 0;
+    OUT_07 = 0;
+    OUT_08 = 0;
+    OUT_09 = 0;
     
     
     
-    LED1_TRIS = OUT;
-    LED2_TRIS = OUT;
-    LED3_TRIS = OUT;
-    LED4_TRIS = OUT;
-    LED5_TRIS = OUT; 
+    OUT_01_TRIS = OUT;
+    OUT_02_TRIS = OUT;
+    OUT_03_TRIS = OUT;
+    OUT_04_TRIS = OUT;
+    OUT_05_TRIS = OUT; 
     LED_RUN_TRIS = OUT;
     
-    LED1 = 0;
-    LED2 = 0;
-    LED3 = 0;
-    LED4 = 0;
-    LED5 = 0;
+    OUT_01 = 0;
+    OUT_02 = 0;
+    OUT_03 = 0;
+    OUT_04 = 0;
+    OUT_05 = 0;
     LED_RUN = 0;
     
     

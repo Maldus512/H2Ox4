@@ -20,11 +20,37 @@
 #include "ciclo.h"
 #include "digin.h"
 #include "timer.h"
+#include "digout.h"
 
 uint8_t f_allarme_sonde = 0;
 uint8_t f_allarme_configurazione = 0;
 
 
+
+/* Funzione: gt_test
+ * Gestione della modalita' test (sonda rilevata - stacca contatto corrispondente)
+
+ */
+void gt_test ()
+{
+    uint8_t read;
+    
+    read = digitalRead(SONDA1, &DI_P1);
+    update_digout(LED1, read);
+    update_digout(RELE1, read);
+
+    read = digitalRead(SONDA2, &DI_P1);
+    update_digout(LED2, read);
+    update_digout(RELE2, read);
+    
+    read = digitalRead(SONDA3, &DI_P1);
+    update_digout(LED3, read);
+    update_digout(RELE3, read);
+    
+    read = digitalRead(SONDA4, &DI_P1);
+    update_digout(LED4, read);
+    update_digout(RELE4, read);
+}
 
 
 
@@ -45,15 +71,15 @@ void gt_base (uint8_t sonde)
         
         if (s == 0 && (sonda_old[SONDA1] == 0 || timer_sonde[SONDA1] == 0))
         {
-            LED1 = 0;
-            RELE1 = 0;
+            clear_digout(LED1);
+            clear_digout(RELE1);
             sonda_old[SONDA1] = 0;
             timer_sonde[SONDA1] = DELAY;        /* Riattacca il contatto con un delay (1-2 secondi) */
         }
         else if (s == 1 && (timer_sonde[SONDA1] == 0 || sonda_old[SONDA1] == 1))
         {
-            LED1 = 1;
-            RELE1 = 1;
+            set_digout(LED1);
+            set_digout(RELE1);
             sonda_old[SONDA1] = 1;
             timer_sonde[SONDA1] = DELAY;        /* Stacca il contatto con un delay (1-2 secondi) */
         }
@@ -63,15 +89,15 @@ void gt_base (uint8_t sonde)
         
         if (s == 0 && (sonda_old[SONDA2] == 0 || timer_sonde[SONDA2] == 0))
         {
-            LED2 = 0;
-            RELE2 = 0;
+            clear_digout(LED2);
+            clear_digout(RELE2);
             sonda_old[SONDA2] = 0;
             timer_sonde[SONDA2] = DELAY;        /* Riattacca il contatto con un delay (1-2 secondi) */
         }
         else if (s == 1 && (timer_sonde[SONDA2] == 0 || sonda_old[SONDA2] == 1))
         {
-            LED2 = 1;
-            RELE2 = 1;
+            set_digout(LED2);
+            set_digout(RELE2);
             sonda_old[SONDA2] = 1;
             timer_sonde[SONDA2] = DELAY;        /* Stacca il contatto con un delay (1-2 secondi) */
         }
@@ -83,15 +109,15 @@ void gt_base (uint8_t sonde)
         
         if (s == 0 && (sonda_old[SONDA3] == 0 || timer_sonde[SONDA3] == 0))
         {
-            LED3 = 0;
-            RELE3 = 0;
+            clear_digout(LED3);
+            clear_digout(RELE3);
             sonda_old[SONDA3] = 0;
             timer_sonde[SONDA3] = DELAY;        /* Riattacca il contatto con un delay (1-2 secondi) */
         }
         else if (s == 1 && (timer_sonde[SONDA3] == 0 || sonda_old[SONDA3] == 1))
         {
-            LED3 = 1;
-            RELE3 = 1;
+            set_digout(LED3);
+            set_digout(RELE3);
             sonda_old[SONDA3] = 1;
             timer_sonde[SONDA3] = DELAY;        /* Stacca il contatto con un delay (1-2 secondi) */
         }
@@ -101,15 +127,15 @@ void gt_base (uint8_t sonde)
         
         if (s == 0 && (sonda_old[SONDA4] == 0 || timer_sonde[SONDA4] == 0))
         {
-            LED4 = 0;
-            RELE4 = 0;
+            clear_digout(LED4);
+            clear_digout(RELE4);
             sonda_old[SONDA4] = 0;
             timer_sonde[SONDA4] = DELAY;        /* Riattacca il contatto con un delay (1-2 secondi) */
         }
         else if (s == 1 && (timer_sonde[SONDA4] == 0 || sonda_old[SONDA4] == 1))
         {
-            LED4 = 1;
-            RELE4 = 1;
+            set_digout(LED4);
+            set_digout(RELE4);
             sonda_old[SONDA4] = 1;
             timer_sonde[SONDA4] = DELAY;        /* Stacca il contatto con un delay (1-2 secondi) */
         }
@@ -138,18 +164,18 @@ void gt_trigger (uint8_t sonde)
         
         if ((s1 == 1 && s2 == 1) || s2 == 1)
         {
-            RELE1 = 0;
-            RELE2 = 0;
-            LED1 = 0;
-            LED2 = 0;
+            clear_digout(RELE1);
+            clear_digout(RELE2);
+            clear_digout(LED1);
+            clear_digout(LED2);
         }
         else if ((s1 == 0 && s2 ==0) && timer_sonde[SONDA2] == 0)
         {
             
-            RELE1 = 1;
-            RELE2 = 1;
-            LED1 = 1;
-            LED2 = 1;
+            set_digout(RELE1);
+            set_digout(RELE2);
+            set_digout(LED1);
+            set_digout(LED2);
         }
         
         if (s1 == 1 || s2 == 1) {
@@ -163,18 +189,18 @@ void gt_trigger (uint8_t sonde)
         
         if ((s1 == 1 && s2 == 1) || s2 == 1)
         {
-            RELE3 = 0;
-            RELE4 = 0;
-            LED3 = 0;
-            LED4 = 0;
+            clear_digout(RELE3);
+            clear_digout(RELE4);
+            clear_digout(LED3);
+            clear_digout(LED4);
         }
         else if ((s1 == 0 && s2 ==0) && timer_sonde[SONDA4] == 0)
         {
             
-            RELE3 = 1;
-            RELE4 = 1;
-            LED3 = 1;
-            LED4 = 1;
+            set_digout(RELE3);
+            set_digout(RELE4);
+            set_digout(LED3);
+            set_digout(LED4);
         }
         
         if (s1 == 1 || s2 == 1)
@@ -221,8 +247,8 @@ void gt_temporizzata(uint8_t sonde)
         
         if (s == 0)
         {
-            LED1 = 0;
-            RELE1 = 0;
+            clear_digout(LED1);
+            clear_digout(RELE1);
             
             if (sonde_on[SONDA1] == 1)
             {
@@ -233,8 +259,8 @@ void gt_temporizzata(uint8_t sonde)
         }
         else if (s == 1 && timer_sonde[SONDA1] == 0 && timer_inibizione_sonde[SONDA1] == 0)
         {
-            LED1 = 1;
-            RELE1 = 1;
+            set_digout(LED1);
+            set_digout(RELE1);
             sonde_on[SONDA1] = 1;
         }
         
@@ -249,8 +275,8 @@ void gt_temporizzata(uint8_t sonde)
         
         if (s == 0)
         {
-            LED2 = 0;
-            RELE2 = 0;
+            clear_digout(LED2);
+            clear_digout(RELE2);
             
             if (sonde_on[SONDA2] == 1)
             {
@@ -261,8 +287,8 @@ void gt_temporizzata(uint8_t sonde)
         }
         else if (s == 1 && timer_sonde[SONDA2] == 0 && timer_inibizione_sonde[SONDA2] == 0)
         {
-            LED2 = 1;
-            RELE2 = 1;
+            set_digout(LED2);
+            set_digout(RELE2);
             sonde_on[SONDA2] = 1;
         }
     }
@@ -279,8 +305,8 @@ void gt_temporizzata(uint8_t sonde)
         
         if (s == 0)
         {
-            LED3 = 0;
-            RELE3 = 0;
+            clear_digout(LED3);
+            clear_digout(RELE3);
             
             if (sonde_on[SONDA3] == 1)
             {
@@ -291,8 +317,8 @@ void gt_temporizzata(uint8_t sonde)
         }
         else if (s == 1 && timer_sonde[SONDA3] == 0 && timer_inibizione_sonde[SONDA3] == 0)
         {
-            LED3 = 1;
-            RELE3 = 1;
+            set_digout(LED3);
+            clear_digout(RELE3);
             sonde_on[SONDA3] = 1;
         }
         
@@ -307,8 +333,8 @@ void gt_temporizzata(uint8_t sonde)
         
         if (s == 0)
         {
-            LED4 = 0;
-            RELE4 = 0;
+            clear_digout(LED4);
+            clear_digout(RELE4);
             
             if (sonde_on[SONDA4] == 1)
             {
@@ -319,8 +345,8 @@ void gt_temporizzata(uint8_t sonde)
         }
         else if (s == 1 && timer_sonde[SONDA4] == 0 && timer_inibizione_sonde[SONDA4] == 0)
         {
-            LED4 = 1;
-            RELE4 = 1;
+            set_digout(LED4);
+            set_digout(RELE4);
             sonde_on[SONDA4] = 1;
         }
     }
@@ -340,6 +366,10 @@ void gt_ciclo(MODE mode)
 {
     switch (mode)
     {
+        case TEST:
+            gt_test();
+            break;
+        
         case BASE:
             gt_base(S_1_2);
             gt_base(S_3_4);

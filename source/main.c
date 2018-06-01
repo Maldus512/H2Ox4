@@ -114,7 +114,7 @@ int main(void)
     while(1)
     {
         /* Decommentare per fare resettare la macchina nella modalita' test*/
-        /*if (f_in_test == 0) {*/
+        /*if (f_in_test == 0) */
         refresh_stamp_int(MAIN);
 
         
