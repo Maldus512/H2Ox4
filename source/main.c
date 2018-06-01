@@ -31,9 +31,6 @@
 /*                                                                            */
 /*============================================================================*/
 
-// STRINGA "VERSIONE PROGRAMMA"            012345678901234567890
-const unsigned char str_versione_prog[] = "[V:01.0 D:03/04/2018]\0"; // 21 CHR
-
 
 
 // <editor-fold defaultstate="collapsed" desc=" ####    REVISIONI    #### ">
