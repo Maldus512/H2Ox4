@@ -17,6 +17,9 @@
 
 #ifndef __CICLO_H__
 #define	__CICLO_H__
+#include <stdint.h>
+
+
 
 typedef enum
 {
