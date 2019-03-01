@@ -11,7 +11,7 @@
 /*                                                                            */
 /*  Data  : 25/03/2018      REV  : 00.0                                       */
 /*                                                                            */
-/*  U.mod.: 03/04/2018      REV  : 01.0                                       */
+/*  U.mod.: 01/03/2019      REV  : 03.0                                       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,30 +27,75 @@ uint8_t f_allarme_configurazione = 0;
 
 
 
+
+
 /* Funzione: gt_test
  * Gestione della modalita' test (sonda rilevata - stacca contatto corrispondente)
-
  */
 void gt_test ()
 {
     uint8_t read;
+    uint8_t d1, d2, d3, d4, dt;
+    d1 = digitalRead(DIPSWITCH1, &DI_P1);
+    d2 = digitalRead(DIPSWITCH2, &DI_P1);
+    d3 = digitalRead(DIPSWITCH3, &DI_P1);
+    d4 = digitalRead(DIPSWITCH4, &DI_P1);
     
-    read = digitalRead(SONDA1, &DI_P1);
-    update_digout(LED1, read);
-    update_digout(RELE1, read);
+    dt = d1*1 + d2*2 + d3*4 + d4*8;
+    
+    // TEST SONDE ------------------------------------------------- //
+    if (dt == 0)
+    {
+        read = digitalRead(SONDA1, &DI_P1);
+        update_digout(LED1, read);
+        update_digout(RELE1, read);
 
+        read = digitalRead(SONDA2, &DI_P1);
+        update_digout(LED2, read);
+        update_digout(RELE2, read);
+
+        read = digitalRead(SONDA3, &DI_P1);
+        update_digout(LED3, read);
+        update_digout(RELE3, read);
+
+        read = digitalRead(SONDA4, &DI_P1);
+        update_digout(LED4, read);
+        update_digout(RELE4, read);
+    }
+    
+    
+    
+    // TEST DIP SWITCH -------------------------------------------- //
+    read = digitalRead(SONDA1, &DI_P1);
+    if (d1==1 && read==0)
+    {
+        update_digout(LED1, d1);
+        update_digout(RELE1, d1);
+    }
+    
     read = digitalRead(SONDA2, &DI_P1);
-    update_digout(LED2, read);
-    update_digout(RELE2, read);
+    if (d2==1 && read==0)
+    {
+        update_digout(LED2, d2);
+        update_digout(RELE2, d2);
+    }
     
     read = digitalRead(SONDA3, &DI_P1);
-    update_digout(LED3, read);
-    update_digout(RELE3, read);
+    if (d3==1 && read==0)
+    {
+        update_digout(LED3, d3);
+        update_digout(RELE3, d3);
+    }
     
     read = digitalRead(SONDA4, &DI_P1);
-    update_digout(LED4, read);
-    update_digout(RELE4, read);
+    if (d4==1 && read==0)
+    {
+        update_digout(LED4, d4);
+        update_digout(RELE4, d4);
+    }
 }
+
+
 
 
 
@@ -472,23 +517,23 @@ MODE readConfiguration()
     d3 = digitalRead(DIPSWITCH3, &DI_P1);
     d4 = digitalRead(DIPSWITCH4, &DI_P1);
 
-    if (d1 == 0 && d2 == 0 && d3 == 0 && d4 == 0)
+    if (d1==0 && d2==0 && d3==0 && d4==0)
     {
         return TEST;
     }
-    else if (d1 == 1 && d2 == 0 && d3 == 0 && d4 == 0)
+    else if (d1==1 && d2==0 && d3==0 && d4==0)
     {
         return BASE;
     }
-    else if (d1 == 0 && d2 == 1 && d3 == 0 && d4 == 0)
+    else if (d1==0 && d2==1 && d3==0 && d4==0)
     {
         return TRIGGER;
     }
-    else if (d1 == 1 && d2 == 1 && d3 == 0 && d4 == 0)
+    else if (d1==1 && d2==1 && d3==0 && d4==0)
     {
         return TEMPORIZZATA;
     }
-    else if (d1 == 0 && d2 == 0 && d3 == 1 && d4 == 0)
+    else if (d1==0 && d2==0 && d3==1 && d4==0)
     {
         return TRIGGER_BASE;
     }

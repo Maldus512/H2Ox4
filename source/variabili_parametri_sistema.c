@@ -7,7 +7,7 @@
 /*                                                                            */
 /*      ciclo macchina                                                        */
 /*                                                                            */
-/*  Autore: Massimo Zanna                                                     */
+/*  Autore: Massimo Zanna & Mattia Maldini                                    */
 /*                                                                            */
 /*  Data  : 30/06/2016      REV  : 00.0                                       */
 /*                                                                            */

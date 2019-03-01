@@ -11,7 +11,7 @@
 /*                                                                            */
 /*  Data  : 25/03/2018      REV  : 00.0                                       */
 /*                                                                            */
-/*  U.mod.: 03/04/2018      REV  : 01.0                                       */
+/*  U.mod.: 01/03/2019      REV  : 03.0                                       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -31,13 +31,13 @@ typedef enum
     UNDEFINED,
 } MODE;
 
-#define S_1_2       0
-#define S_3_4       1
+#define S_1_2               0
+#define S_3_4               1
 
 
-#define DELAY           1000
-#define DELAY_TRIGGER   2000
-#define DELAY_TEMPORIZZATA   5000
+#define DELAY               1000
+#define DELAY_TRIGGER       2000
+#define DELAY_TEMPORIZZATA  5000
 #define DELAY_INIBIZIONE    60000UL
 
 extern uint8_t f_allarme_sonde;

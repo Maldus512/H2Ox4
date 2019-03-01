@@ -14,14 +14,15 @@
 /*  U.mod.: 16/05/2018      REV  : 01.0                                       */
 /*                                                                            */
 /******************************************************************************/
+
 #ifndef VARIABILI_PARAMETRI_SISTEMA_H
 #define	VARIABILI_PARAMETRI_SISTEMA_H
 
 #include "HardwareProfile.h"
 
 
+
 extern unsigned char    f_in_test;                  // flag che segnala che sono nelle pagine di test
 extern unsigned char    f_undefined;                  // flag che segnala che la configurazione di dip switch e' errata
-
 
 #endif	/* VARIABILI_PARAMETRI_SISTEMA_H */

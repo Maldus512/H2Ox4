@@ -1,0 +1,22 @@
+
+NOTE UTILI USO GitHub di un'utente Profano (v. 1.00 01/06/2018).
+================================================================
+
+
+
+01) Quando si "CLONA" su PC una "repository remota" ricordarsi, se presenti, di eseguire anche il "Submodule Update".
+
+02) Se, prima di eseguire un'aggiornamento con "PUSH" nella "repository locale", sono marcate delle differenze nei file
+	e sono solo "di comodo/non importanti" eseguire un "Ripristina" sui file coinvolti ed eseguire il "PUSH".
+	Non facendolo al momento del "PUSH" comparira' un messaggio del tipo "commit non eseguito correttamente !!!!".
+
+03) Per verificare se nella "repository locale" su PC ci sono differenze rispetto alla "host remota" fare un "push" secco:
+	se non ci sono differenze compare il messaggio "Everything up-to-date".
+
+04) Con l'operazione di "Differenze" vengono evidenziate quelle presenti nei "file locali" rispetto all'ultimo "Commit".
+
+05) Con l'operazione di "Differenza con versione precedente" vengono evidenziate quelle presenti nei "file locali"
+	rispetto all'ultimo "PUSH" remoto !!??!!??.
+
+
+

@@ -11,7 +11,7 @@
 /*                                                                            */
 /*  Data  : 22/07/2003      REV  : 00.0                                       */
 /*                                                                            */
-/*  U.mod.: 03/04/2018      REV  : 01.0                                       */
+/*  U.mod.: 01/03/2019      REV  : 03.0                                       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -58,7 +58,6 @@ void Init_Digin_Filter (DI_FILTER *DI_Filter, unsigned char type, unsigned char 
             unsigned char b5:1;
             unsigned char b6:1;
             unsigned char b7:1;
-            unsigned char b8:1;
         }inp;
     }DI_INP;
     
@@ -99,10 +98,6 @@ void Init_Digin_Filter (DI_FILTER *DI_Filter, unsigned char type, unsigned char 
     DI_Filter->I_7_old = di_level.inp.b7;   /* 1 = attivo basso 0 = attivo alto */
     DI_Filter->flt7 = T_FILT;
     DI_Filter->type7   = di_type.inp.b7 ;   /* 0 = ingresso dig */
-    
-    DI_Filter->I_8_old = di_level.inp.b8;   /* 1 = attivo basso 0 = attivo alto */
-    DI_Filter->flt8 = T_FILT;
-    DI_Filter->type8   = di_type.inp.b8 ;   /* 0 = ingresso dig */
 }
 
 
@@ -384,6 +379,7 @@ uint8_t digitalRead(input i, DI_FILTER *di_filter)
         case SONDA4:
             return di_filter->IN_3;
             break;
+            
         case DIPSWITCH1:
             return di_filter->IN_4;
             break;
@@ -402,41 +398,41 @@ uint8_t digitalRead(input i, DI_FILTER *di_filter)
 
 
 
-
-
-/* Funzione: digitalWrite
- * Lettura di un pin digitale di output (8 in tutto).
- * --------
- *  i: 
- */
-uint8_t digitalWrite(input i, DI_FILTER *di_filter)
-{
-    switch (i)
-    {
-        case SONDA1:
-            return di_filter->IN_0;
-            break;
-        case SONDA2:
-            return di_filter->IN_1;
-            break;
-        case SONDA3:
-            return di_filter->IN_2;
-            break;
-        case SONDA4:
-            return di_filter->IN_3;
-            break;
-        case DIPSWITCH1:
-            return di_filter->IN_4;
-            break;
-        case DIPSWITCH2:
-            return di_filter->IN_5;
-            break;
-        case DIPSWITCH3:
-            return di_filter->IN_6;
-            break;
-        case DIPSWITCH4:
-            return di_filter->IN_7;
-            break;
-    }
-    return 0;
-}
+//
+//
+///* Funzione: digitalWrite
+// * Lettura di un pin digitale di output (8 in tutto).
+// * --------
+// *  i: 
+// */
+//uint8_t digitalWrite(input i, DI_FILTER *di_filter)
+//{
+//    switch (i)
+//    {
+//        case SONDA1:
+//            return di_filter->IN_0;
+//            break;
+//        case SONDA2:
+//            return di_filter->IN_1;
+//            break;
+//        case SONDA3:
+//            return di_filter->IN_2;
+//            break;
+//        case SONDA4:
+//            return di_filter->IN_3;
+//            break;
+//        case DIPSWITCH1:
+//            return di_filter->IN_4;
+//            break;
+//        case DIPSWITCH2:
+//            return di_filter->IN_5;
+//            break;
+//        case DIPSWITCH3:
+//            return di_filter->IN_6;
+//            break;
+//        case DIPSWITCH4:
+//            return di_filter->IN_7;
+//            break;
+//    }
+//    return 0;
+//}

@@ -11,7 +11,7 @@
 /*                                                                            */
 /*  Data  : 22/07/2003      REV  : 00.0                                       */
 /*                                                                            */
-/*  U.mod.: 03/04/2018      REV  : 01.0                                       */
+/*  U.mod.: 01/03/2019      REV  : 03.0                                       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -77,13 +77,13 @@ typedef struct tagDI_FILTER
 typedef enum
 {
     SONDA1 = 0,
-            SONDA2,
-            SONDA3,
-            SONDA4,
-            DIPSWITCH1,
-            DIPSWITCH2,
-            DIPSWITCH3,
-            DIPSWITCH4,
+    SONDA2,
+    SONDA3,
+    SONDA4,
+    DIPSWITCH1,
+    DIPSWITCH2,
+    DIPSWITCH3,
+    DIPSWITCH4,
 } input;
 
 extern DI_FILTER DI_P1;

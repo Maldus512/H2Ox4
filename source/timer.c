@@ -11,11 +11,13 @@
 /*                                                                            */
 /*  Data  : 25/03/2018      REV  : 00.0                                       */
 /*                                                                            */
-/*  U.mod.: 03/04/2018      REV  : 01.0                                       */
+/*  U.mod.: 01/03/2019      REV  : 03.0                                       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "HardwareProfile.h"
+#include "timer.h"
+
 #include "digin.h"
 #include "ciclo.h"
 #include "wdt.h"

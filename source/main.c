@@ -17,7 +17,7 @@
 /*                                                                            */
 /*  ver. 00:    25/03/2018  00.0 (base: H2Ox4 Renesas v.04.0 del 14/12/2017)  */
 /*                                                                            */
-/*  ver. att.:  01/06/2018  02.0                                              */
+/*  ver. att.:  01/03/2019  03.0                                              */
 /*                                                                            */
 /*  BY:         Maldus (Mattia MALDINI) & Massimo ZANNA                       */
 /*                                                                            */
@@ -58,6 +58,12 @@
 /*                                                                            */
 /*      - WDT E MODALITA' TEST (dipswitch 0000)                               */
 /*                                                                            */
+/*----------------------------------------------------------------------------*/
+/*                                                                            */
+/*  ver. 03.0: 01/03/2019                                                     */
+/*                                                                            */
+/*      - IN MODALITA' TEST (dipswitch 0000) INTRODOTTO TEST SW (DIP 1/OUT 1) */
+/*                                                                            */
 /******************************************************************************/
 
 #include "HardwareProfile.h"
@@ -68,6 +74,7 @@
 #include "digin.h"
 #include "wdt.h"
 #include "variabili_parametri_sistema.h"
+
 
 
 
@@ -89,14 +96,18 @@ int main(void)
     Init_Digin_Filter(&DI_P1, 0, 0, DEBOUNCE);
     
     /* Aspetta 500ms che si inizializzi il sistema, ma continuando a gestire il wdt*/
-    for (i = 0; i<25; i++) {
+    for (i = 0; i<25; i++)
+    {
         refresh_stamp_int(MAIN);
         delay_ms(20);
     }
     
     
+    
+    
+    
     /*
-     * Modalita' di funzionamento: ============================================
+     * Modalita' di funzionamento: =============================================
      * 
      *  0000: TEST
      *  0001: Base - Base
@@ -104,13 +115,21 @@ int main(void)
      *  0011: Temporizzato - Temporizzato
      *  0100: Trigger - Base
      * 
-     */
+     *  ======================================================================== 
+    */
+    
+    
+    
+    
+    
     operatingMode = readConfiguration();
     
-    if (operatingMode == TEST) {
+    if (operatingMode == TEST)
+    {
         f_in_test = 1;
     }
-    else if (operatingMode == UNDEFINED) {
+    else if (operatingMode == UNDEFINED)
+    {
         f_undefined = 1;
     }
     
@@ -126,60 +145,3 @@ int main(void)
     }
     return 0;
 }
-
-
-
-
-
-//////void Test_HW (void)
-//////{
-//////    if (DIPSWITCH1 || SONDA1)
-//////    {
-//////        LED1 = 1;
-//////        RELE1 = 1;
-//////    }
-//////    else
-//////    {
-//////        LED1 = 0;
-//////        RELE1 = 0;
-//////    }
-//////    
-//////    
-//////    
-//////    if (DIPSWITCH2 || SONDA2)
-//////    {
-//////        LED2 = 1;
-//////        RELE2 = 1;
-//////    }
-//////    else
-//////    {
-//////        LED2 = 0;
-//////        RELE2 = 0;
-//////    }
-//////    
-//////    
-//////    
-//////    if (DIPSWITCH3 || SONDA3)
-//////    {
-//////        LED3 = 1;
-//////        RELE3 = 1;
-//////    }
-//////    else
-//////    {
-//////        LED3 = 0;
-//////        RELE3 = 0;
-//////    }
-//////    
-//////    
-//////    
-//////    if (DIPSWITCH4 || SONDA4)
-//////    {
-//////        LED4 = 1;
-//////        RELE4 = 1;
-//////    }
-//////    else
-//////    {
-//////        LED4 = 0;
-//////        RELE4 = 0;
-//////    }
-//////}
