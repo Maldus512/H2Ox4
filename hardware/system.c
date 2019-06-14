@@ -34,7 +34,7 @@
 /* FSIGN */
 
 /* FOSCSEL */
-#pragma config FNOSC = OSCFDIV              /* Oscillator Source Selection (Internal Fast RC (FRC)) */
+#pragma config FNOSC = FRC              /* Oscillator Source Selection (Internal Fast RC (FRC)) */
 #pragma config PLLMODE = DISABLED       /* PLL Mode Selection (No PLL used; PLLEN bit is not available) */
 #pragma config IESO = OFF               /* Two-speed Oscillator Start-up Enable bit (Start up with user-selected oscillator source) */
 
@@ -44,7 +44,7 @@
 #pragma config SOSCSEL = OFF             /* Digital mode */
 #pragma config PLLSS = PLL_FRC          /* PLL Secondary Selection Configuration bit (PLL is fed by the on-chip Fast RC (FRC) oscillator) */
 #pragma config IOL1WAY = OFF            /* Peripheral pin select configuration bit (Allow multiple reconfigurations) */
-#pragma config FCKSM = CSECMD           /* Clock Switching Mode bits (Clock switching is enabled,Fail-safe Clock Monitor is disabled) */
+#pragma config FCKSM = CSDCMD           /* Clock Switching Mode bits (Clock switching is disabled,Fail-safe Clock Monitor is disabled) */
 
 /* FWDT */
 /* Watchdog timer configurato per essere settato ogni 32 ms (pena il reset)*/
