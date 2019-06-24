@@ -48,7 +48,7 @@
 
 /* FWDT */
 /* Watchdog timer configurato per essere settato ogni 32 ms (pena il reset)*/
-#pragma config WDTPS = PS32          /* Watchdog Timer Postscaler bits (1:32) */
+#pragma config WDTPS = PS128          /* Watchdog Timer Postscaler bits (1:32) */
 #pragma config FWPSA = PR32            /* Watchdog Timer Prescaler bit (1:32) */
 #pragma config FWDTEN = ON             /* Watchdog Timer Enable bits (WDT and SWDTEN enabled) */
 #pragma config WINDIS = OFF             /* Watchdog Timer Window Enable bit (Watchdog Timer in Non-Window mode) */

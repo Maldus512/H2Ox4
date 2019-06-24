@@ -33,7 +33,7 @@ unsigned long timer_inibizione_sonde[4] = {0,0,0,0};
 void initTimer1 (void)
 {
     T1CON           = 0x0000;   /* CONFIG TIMER 1mS */
-    PR1             = 2000-1;   /* Load pediod register */
+    PR1             = 4000-1;   /* Load pediod register */
     TMR1            = 0x00;     /* clear counter */
     
     T1CONbits.TON   = 1;        /* START TIMER 1 */

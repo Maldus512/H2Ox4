@@ -91,9 +91,8 @@ int main(void)
     Init_GPIO();
     
     LED_RUN = 1;
-    initTimer1();
-    
     Init_Digin_Filter(&DI_P1, 0, 0, DEBOUNCE);
+    initTimer1();
     
     /* Aspetta 500ms che si inizializzi il sistema, ma continuando a gestire il wdt*/
     for (i = 0; i<25; i++)
@@ -101,8 +100,7 @@ int main(void)
         refresh_stamp_int(MAIN);
         delay_ms(20);
     }
-    
-    
+   
     
     
     
