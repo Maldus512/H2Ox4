@@ -17,7 +17,7 @@
 /*                                                                            */
 /*  ver. 00:    25/03/2018  00.0 (base: H2Ox4 Renesas v.04.0 del 14/12/2017)  */
 /*                                                                            */
-/*  ver. att.:  01/03/2019  03.0                                              */
+/*  ver. att.:  24/06/2019  03.1                                              */
 /*                                                                            */
 /*  BY:         Maldus (Mattia MALDINI) & Massimo ZANNA                       */
 /*                                                                            */
@@ -63,6 +63,15 @@
 /*  ver. 03.0: 01/03/2019                                                     */
 /*                                                                            */
 /*      - IN MODALITA' TEST (dipswitch 0000) INTRODOTTO TEST SW (DIP 1/OUT 1) */
+/*                                                                            */
+/*----------------------------------------------------------------------------*/
+/*                                                                            */
+/*  ver. 03.1: 24/06/2019                                                     */
+/*                                                                            */
+/*      - Corretto imprecisioni sulla configurazione del clock (a volte OSC   */
+/*        partiva male e sembrava scheda sprogrammata (da errata)             */
+/*                                                                            */
+/*      - corretta velocita' del timer                                        */
 /*                                                                            */
 /******************************************************************************/
 
